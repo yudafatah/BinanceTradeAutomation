@@ -1,4 +1,4 @@
-﻿namespace Binance.Trade.Automation.Entities
+﻿namespace BinanceTradeBot.Entities
 {
     public class BinanceCredential
     {

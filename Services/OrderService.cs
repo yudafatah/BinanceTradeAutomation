@@ -1,19 +1,17 @@
-﻿using Binance.Trade.Automation.Contracts;
-using Binance.Trade.Automation.Entities;
-using Microsoft.AspNetCore.DataProtection.KeyManagement;
+﻿using BinanceTradeBot.Contracts;
+using BinanceTradeBot.Entities;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Binance.Trade.Automation.Services
+namespace BinanceTradeBot.Services
 {
     public class OrderService : IOrderService
     {
@@ -32,7 +30,7 @@ namespace Binance.Trade.Automation.Services
 
             decimal stopPrice = price - (price * slPercent);
 
-            // Generate a timestamp t
+            // Generate a timestamp
             long timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
             // Construct the query string

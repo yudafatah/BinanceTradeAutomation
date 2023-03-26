@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Binance.Trade.Automation.Contracts
+namespace BinanceTradeBot.Contracts
 {
     public interface IOrderService
     {

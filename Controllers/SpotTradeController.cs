@@ -1,8 +1,8 @@
-﻿using Binance.Trade.Automation.Contracts;
+﻿using BinanceTradeBot.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace Binance.Trade.Automation.Controllers
+namespace BinanceTradeBot.Controllers
 {
     [Route("webhook/trade")]
     [ApiController]
@@ -16,7 +16,7 @@ namespace Binance.Trade.Automation.Controllers
         }
 
         [HttpGet("order-market")]
-        public Task<string> OrderMarket(string symbol ,decimal quantity)
+        public Task<string> OrderMarket(string symbol, decimal quantity)
         {
             return _orderService.SpotOrder(symbol, quantity);
         }

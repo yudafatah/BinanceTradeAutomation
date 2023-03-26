@@ -1,6 +1,6 @@
 using System;
 
-namespace Binance.Trade.Automation
+namespace BinanceTradeBot
 {
     public class WeatherForecast
     {

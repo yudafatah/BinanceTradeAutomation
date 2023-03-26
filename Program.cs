@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Binance.Trade.Automation
+namespace BinanceTradeBot
 {
     public class Program
     {

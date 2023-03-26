@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Binance.Trade.Automation": {
+    "BinanceTradeBot": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
@@ -8,7 +8,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5041"
+      "applicationUrl": "http://localhost:5137"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -30,7 +30,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:10041",
+      "applicationUrl": "http://localhost:30535",
       "sslPort": 0
     }
   }

@@ -1,6 +1,6 @@
-using Binance.Trade.Automation.Contracts;
-using Binance.Trade.Automation.Entities;
-using Binance.Trade.Automation.Services;
+using BinanceTradeBot.Contracts;
+using BinanceTradeBot.Entities;
+using BinanceTradeBot.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -13,7 +13,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace Binance.Trade.Automation
+namespace BinanceTradeBot
 {
     public class Startup
     {
@@ -34,7 +34,7 @@ namespace Binance.Trade.Automation
                     .AllowAnyHeader()
                     // .WithHeaders("Authorization", "X-Moduit-Token", "content-type")
                     .AllowAnyMethod()
-                    //.WithExposedHeaders("Authorization", "X-Moduit-Token")
+            //.WithExposedHeaders("Authorization", "X-Moduit-Token")
             ));
 
             services.AddControllers(o => o.OutputFormatters.RemoveType<StringOutputFormatter>())
@@ -50,20 +50,24 @@ namespace Binance.Trade.Automation
             });
 
             ConfigureDependencies(services);
-            
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("specs", new OpenApiInfo { Title = "Binance Trade Automation Doc", Version = "v1",
+                c.SwaggerDoc("specs", new OpenApiInfo
+                {
+                    Title = "Binance Trade Automation Doc",
+                    Version = "v1",
                     Description = @"
 <b>Welcome to Binance Trade Automation Doc!</b> <br /> <br />
-", Contact = new OpenApiContact{Email = "yudafatah@gmail.com", Name = "For any API related inquiry, you can send us email at"}
+",
+                    Contact = new OpenApiContact { Email = "yudafatah@gmail.com", Name = "For any API related inquiry, you can send us email at" }
                 });
 
                 // c.EnableAnnotations();
                 c.CustomSchemaIds(type => type.ToString());
                 c.OrderActionsBy(d => d.GroupName);
 
-                var filePath = Path.Combine(System.AppContext.BaseDirectory, "Binance.Trade.Automation.xml");
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "BinanceTradeBot.xml");
                 c.IncludeXmlComments(filePath, true);
 
             });
@@ -85,7 +89,7 @@ namespace Binance.Trade.Automation
             app.UseRouting();
 
             app.UseAuthorization();
-            
+
             // let's exclude some path...
             //app.Use(async (context, next) =>
             //{
@@ -99,24 +103,24 @@ namespace Binance.Trade.Automation
             //});
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-            
-           
+
+
 
             //if (env.IsProduction()) return;
 
             app.UseSwagger();
-//#else
-//app.UseSwagger(c =>
-//            {
-//                c.PreSerializeFilters.Add((swagger, httpReq) =>
-//                {
-//                    swagger.Servers = new List<OpenApiServer>
-//                    {
-//                        new OpenApiServer { Url = $"https://api-ext-dev.moduit.id/v1" }
-//                    };
-//                });
-//            });
-//#endif
+            //#else
+            //app.UseSwagger(c =>
+            //            {
+            //                c.PreSerializeFilters.Add((swagger, httpReq) =>
+            //                {
+            //                    swagger.Servers = new List<OpenApiServer>
+            //                    {
+            //                        new OpenApiServer { Url = $"https://api-ext-dev.moduit.id/v1" }
+            //                    };
+            //                });
+            //            });
+            //#endif
 
             app.UseSwaggerUI(c =>
             {
@@ -130,11 +134,11 @@ namespace Binance.Trade.Automation
             {
                 c.RequiredPropsFirst();
                 c.DocumentTitle = "Moduit External API";
-//#if DEBUG
+                //#if DEBUG
                 c.SpecUrl = "/swagger/specs/swagger.json";
-//#else
-//c.SpecUrl = "https://api-ext-dev.moduit.id/v1/swagger/specs/swagger.json";
-//#endif
+                //#else
+                //c.SpecUrl = "https://api-ext-dev.moduit.id/v1/swagger/specs/swagger.json";
+                //#endif
                 c.RoutePrefix = "docs";
                 c.PathInMiddlePanel();
                 c.ExpandResponses("200, 201");
@@ -146,10 +150,10 @@ namespace Binance.Trade.Automation
         public void ConfigureDependencies(IServiceCollection services)
         {
             services.AddSingleton<IOrderService, OrderService>();
-            
+
             var credConfig = Configuration.GetSection("BinanceCredential");
             services.Configure<BinanceCredential>(credConfig);
-            
+
         }
     }
 }
