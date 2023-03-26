@@ -32,7 +32,7 @@ namespace Binance.Trade.Automation.Services
 
             decimal stopPrice = price - (price * slPercent);
 
-            // Generate a timestamp
+            // Generate a timestamp t
             long timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
             // Construct the query string
